@@ -1,15 +1,19 @@
-require('@nomiclabs/hardhat-waffle')
-require('dotenv').config()
+require("@nomiclabs/hardhat-waffle");
+require("dotenv").config();
 
 module.exports = {
-  defaultNetwork: 'localhost',
+  defaultNetwork: "localhost",
   networks: {
     localhost: {
-      url: 'http://127.0.0.1:8545',
+      url: "http://127.0.0.1:8545",
+    },
+    goerli: {
+      url: process.env.ENDPOINT_URL,
+      accounts: [process.env.DEPLOYER_KEY],
     },
   },
   solidity: {
-    version: '0.8.11',
+    version: "0.8.11",
     settings: {
       optimizer: {
         enabled: true,
@@ -18,10 +22,10 @@ module.exports = {
     },
   },
   paths: {
-    sources: './src/contracts',
-    artifacts: './src/abis',
+    sources: "./src/contracts",
+    artifacts: "./src/abis",
   },
   mocha: {
     timeout: 40000,
   },
-}
+};
